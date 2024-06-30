@@ -42,6 +42,9 @@ def click(container_width,height,scale,radius_width,show_mask,model,im):
     for each in ['color_change_point_box','input_masks_color_box']:
         if each in st.session_state:st.session_state.pop(each)
 
+    print(f"Image selected: {st.session_state['img_select']}")
+    print(f"Img: {st.session_state['img']}")
+
     canvas_result = st_canvas(
             fill_color="rgba(255, 255, 0, 0.8)",
             background_image = Image.open(st.session_state['img_select']),
