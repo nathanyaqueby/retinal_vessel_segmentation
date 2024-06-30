@@ -19,7 +19,7 @@ st.header("👁️ Retinal Image Segmentation")
 st.write("Click on the image to select the region of interest and label it as 'Vein' or 'Artery'.")
 
 with st.sidebar:
-    im = st.file_uploader("Upload an image (optional)", type=["png", "jpg", "jpeg"])
+    img_upload = st.file_uploader("Upload an image (optional)", type=["png", "jpg", "jpeg"])
     model = st.selectbox("Select a Segment Anything model", ["vit_b", "vit_l"])
     show_mask = st.checkbox("Show mask", value=True)
     radius_width = st.slider('Radius for points',0,20,5,1)
@@ -53,9 +53,9 @@ def click(container_width,height,scale,radius_width,show_mask,model,im):
     if not show_mask:
         im = Image.fromarray(im).convert("RGB")
         rerun = False
-        if im != st.session_state['im']:
+        if im != st.session_state['img_select']:
             rerun = True
-        st.session_state['im'] = im
+        st.session_state['img_select'] = im
         if rerun:
             st.experimental_rerun()
     elif canvas_result.json_data is not None:
@@ -110,13 +110,13 @@ def click(container_width,height,scale,radius_width,show_mask,model,im):
             im = Image.alpha_composite(Image.fromarray(im).convert('RGBA'),im_masked).convert("RGB")
             torch.cuda.empty_cache()
             rerun = False
-            if im != st.session_state['im']:
+            if im != st.session_state['img_select']:
                 rerun = True
-            st.session_state['im'] = im
+            st.session_state['img_select'] = im
             if rerun:
                 st.experimental_rerun()
         im_bytes = BytesIO()
-        st.session_state['im'].save(im_bytes,format='PNG')
+        st.session_state['img_select'].save(im_bytes,format='PNG')
         st.download_button('Download image',data=im_bytes.getvalue(),file_name='seg.png')
 
 img = image_select(label = "Select an image",
@@ -131,12 +131,9 @@ img = image_select(label = "Select an image",
 
 # col1, col2 = st.columns(2)
 
-if im is not None:
-    img = im
-
 img = Image.open(img)
 width, height   = img.size[:2]
-im              = np.array(im)
+im              = np.array(img)
 container_width = 700
 scale           = container_width/width
 
