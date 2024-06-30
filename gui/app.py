@@ -3,7 +3,7 @@ from streamlit_image_select import image_select
 from streamlit_image_coordinates import streamlit_image_coordinates
 from PIL import Image, ImageDraw
 
-st.page_config(layout="wide",
+st.set_page_config(layout="wide",
                initial_sidebar_state="collapsed",
                page_title="Retinal Image Segmentation - SegRAVIR and Segment Anything Model",
                page_icon="👁️")
