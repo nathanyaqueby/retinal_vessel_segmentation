@@ -3,6 +3,7 @@ import torch
 import numpy as np
 from distinctipy import distinctipy
 import streamlit as st
+from PIL import Image
 
 def get_checkpoint_path(model):
     if model == 'vit_l':
@@ -69,6 +70,21 @@ def model_predict_everything(im,model):
 def model_predict_click(im,input_points,input_labels,model):
     if input_points == []:return np.array([])
     predictor, mask_generator = get_model(model)
+
+    # Check and convert the image format
+    if isinstance(im, np.ndarray):
+        im = Image.fromarray(im)
+    
+    if not isinstance(im, torch.Tensor):
+        im = np.array(im)
+        im = torch.tensor(im).permute(2, 0, 1).contiguous()[None, :, :, :].float()
+    
+    # Ensure image is in the expected format
+    if im.ndim == 3:  # Add batch dimension if missing
+        im = im.unsqueeze(0)
+    
+    print(f"Image shape: {im.shape}")  # Debugging statement
+
     predictor.set_image(im)
     input_labels = np.array(input_labels)
     input_points = np.array(input_points)
