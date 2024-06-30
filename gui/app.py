@@ -135,7 +135,7 @@ if im is not None:
     img = im
 
 img = Image.open(img)
-width, height   = img.shape[:2]
+width, height   = img.size[:2]
 im              = np.array(im)
 container_width = 700
 scale           = container_width/width
