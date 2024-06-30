@@ -20,7 +20,7 @@ st.write("Click on the image to select the region of interest and label it as 'V
 
 with st.sidebar:
     im = st.file_uploader("Upload an image (optional)", type=["png", "jpg", "jpeg"])
-    model = st.selectbox("Select a Segment Anything model", ["vit_b", "vit_l", "vit_h"])
+    model = st.selectbox("Select a Segment Anything model", ["vit_b", "vit_l"])
     show_mask = st.checkbox("Show mask", value=True)
     radius_width = st.slider('Radius for points',0,20,5,1)
 

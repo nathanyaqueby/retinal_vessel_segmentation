@@ -1,6 +1,7 @@
 streamlit
 streamlit-image-select
 streamlit-image-coordinates
+streamlit-drawable-canvas
 opencv-python
 pycocotools
 matplotlib
