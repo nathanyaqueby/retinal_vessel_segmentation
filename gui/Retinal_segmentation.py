@@ -142,7 +142,7 @@ img= cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 if 'img' not in st.session_state:
     st.session_state['img'] = img
 
-width, height   = img.size[:2]
+width, height   = img.shape[:2]
 im              = np.array(img)
 container_width = 768
 scale           = container_width/width
