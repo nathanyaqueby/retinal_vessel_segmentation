@@ -129,43 +129,46 @@ img = image_select(label = "Select an image",
                    captions = ["IR_Case_011", "IR_Case_017", "IR_Case_019", "IR_Case_020", "IR_Case_021", "IR_Case_022"],
                    key = "img_select")
 
-# col1, col2 = st.columns(2)
+col1, col2 = st.columns(2)
 
-img = Image.open(img)
+col1.image("gui/train/test_img.png", use_column_width=True)
+col2.image("gui/train/training_masks/IR_Case_011.png", use_column_width=True)
 
-if 'img' not in st.session_state:
-    st.session_state['img'] = img
+# img = Image.open(img)
 
-width, height   = img.size[:2]
-im              = np.array(img)
-container_width = 768
-scale           = container_width/width
+# if 'img' not in st.session_state:
+#     st.session_state['img'] = img
 
-# # print the type of the image
-# st.markdown(type(img))
-# st.markdown(type(im))
-# st.write(im.shape)
+# width, height   = img.size[:2]
+# im              = np.array(img)
+# container_width = 768
+# scale           = container_width/width
 
-click(container_width,height,scale,radius_width,show_mask,model,im)
+# # # print the type of the image
+# # st.markdown(type(img))
+# # st.markdown(type(im))
+# # st.write(im.shape)
 
-# with col1:
-draw = ImageDraw.Draw(img)
+# click(container_width,height,scale,radius_width,show_mask,model,im)
 
-# Draw an ellipse at each coordinate in points
-for point in st.session_state["points"]:
-    coords = get_ellipse_coords(point)
-    draw.ellipse(coords, fill="red")
+# # with col1:
+# draw = ImageDraw.Draw(img)
 
-value = streamlit_image_coordinates(img, key="pil")
+# # Draw an ellipse at each coordinate in points
+# for point in st.session_state["points"]:
+#     coords = get_ellipse_coords(point)
+#     draw.ellipse(coords, fill="red")
 
-if value is not None:
-    point = value["x"], value["y"]
+# value = streamlit_image_coordinates(img, key="pil")
 
-    if point not in st.session_state["points"]:
-        st.session_state["points"].append(point)
-        st.rerun()
+# if value is not None:
+#     point = value["x"], value["y"]
 
-st.write("Points:", st.session_state["points"])
+#     if point not in st.session_state["points"]:
+#         st.session_state["points"].append(point)
+#         st.rerun()
+
+# st.write("Points:", st.session_state["points"])
 
 # with col2:
 #     st.image(img)
