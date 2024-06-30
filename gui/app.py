@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_image_select import image_select
-import streamlit_image_coordinates
+from streamlit_image_coordinates import streamlit_image_coordinates
 from PIL import Image, ImageDraw
 
 st.header("Retinal Image Segmentation")
