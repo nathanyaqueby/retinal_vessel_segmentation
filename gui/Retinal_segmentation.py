@@ -38,16 +38,16 @@ def get_ellipse_coords(point: tuple[int, int]) -> tuple[int, int, int, int]:
         center[1] + radius,
     )
 
-def click(container_width,height,scale,radius_width,show_mask,model,im):
+def click(container_width,height,scale,radius_width,show_mask,model,im, img):
     for each in ['color_change_point_box','input_masks_color_box']:
         if each in st.session_state:st.session_state.pop(each)
 
     print(f"Image selected: {st.session_state['img_select']}")
-    print(f"Img: {st.session_state['img']}")
+    print(f"Img: {img}")
 
     canvas_result = st_canvas(
             fill_color="rgba(255, 255, 0, 0.8)",
-            background_image = Image.open(st.session_state['img_select']),
+            background_image = Image.open(img),
             drawing_mode='point',
             width = container_width,
             height = height * scale,
@@ -139,15 +139,15 @@ col1, col2 = st.columns(2)
 col1.image("gui/train/test_img.png", use_column_width=True)
 col2.image("gui/train/training_masks/IR_Case_011.png", use_column_width=True)
 
-img = cv2.imread(img)
+cv_img = cv2.imread(img)
 
-img= cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+cv_img= cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB)
 
 if 'img' not in st.session_state:
-    st.session_state['img'] = img
+    st.session_state['img'] = cv_img
 
-width, height   = img.shape[:2]
-im              = np.array(img)
+width, height   = cv_img.shape[:2]
+im              = np.array(cv_img)
 container_width = 768
 scale           = container_width/width
 
@@ -156,7 +156,7 @@ scale           = container_width/width
 # st.markdown(type(im))
 # st.write(im.shape)
 
-click(container_width,height,scale,radius_width,show_mask,model,im)
+click(container_width,height,scale,radius_width,show_mask,model,im, img)
 
 # # with col1:
 # draw = ImageDraw.Draw(img)
