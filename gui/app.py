@@ -42,7 +42,7 @@ def click(container_width,height,scale,radius_width,show_mask,model,im):
         if each in st.session_state:st.session_state.pop(each)
     canvas_result = st_canvas(
             fill_color="rgba(255, 255, 0, 0.8)",
-            background_image = st.session_state['img_select'],
+            background_image = st.session_state['img'],
             drawing_mode='point',
             width = container_width,
             height = height * scale,
@@ -53,9 +53,9 @@ def click(container_width,height,scale,radius_width,show_mask,model,im):
     if not show_mask:
         im = Image.fromarray(im).convert("RGB")
         rerun = False
-        if im != st.session_state['img_select']:
+        if im != st.session_state['img']:
             rerun = True
-        st.session_state['img_select'] = im
+        st.session_state['img'] = im
         if rerun:
             st.experimental_rerun()
     elif canvas_result.json_data is not None:
@@ -110,13 +110,13 @@ def click(container_width,height,scale,radius_width,show_mask,model,im):
             im = Image.alpha_composite(Image.fromarray(im).convert('RGBA'),im_masked).convert("RGB")
             torch.cuda.empty_cache()
             rerun = False
-            if im != st.session_state['img_select']:
+            if im != st.session_state['img']:
                 rerun = True
-            st.session_state['img_select'] = im
+            st.session_state['img'] = im
             if rerun:
                 st.experimental_rerun()
         im_bytes = BytesIO()
-        st.session_state['img_select'].save(im_bytes,format='PNG')
+        st.session_state['img'].save(im_bytes,format='PNG')
         st.download_button('Download image',data=im_bytes.getvalue(),file_name='seg.png')
 
 img = image_select(label = "Select an image",
@@ -132,15 +132,19 @@ img = image_select(label = "Select an image",
 # col1, col2 = st.columns(2)
 
 img = Image.open(img)
+
+if 'img' not in st.session_state:
+    st.session_state['img'] = img
+
 width, height   = img.size[:2]
 im              = np.array(img)
 container_width = 768
 scale           = container_width/width
 
-# print the type of the image
-st.markdown(type(img))
-st.markdown(type(im))
-st.write(im.shape)
+# # print the type of the image
+# st.markdown(type(img))
+# st.markdown(type(im))
+# st.write(im.shape)
 
 click(container_width,height,scale,radius_width,show_mask,model,im)
 
@@ -165,3 +169,19 @@ st.write("Points:", st.session_state["points"])
 
 # with col2:
 #     st.image(img)
+st.divider()
+
+st.subheader("References")
+
+st.code("""
+        @article{hatamizadeh2022ravir,
+            title={RAVIR: A Dataset and Methodology for the Semantic Segmentation and Quantitative Analysis of Retinal Arteries and Veins
+                    in Infrared Reflectance Imaging},
+            author={Hatamizadeh, Ali and Hosseini, Hamid and Patel, Niraj and Choi, Jinseo and Pole, Cameron and Hoeferlin, Cory and
+                    Schwartz, Steven and Terzopoulos, Demetri},
+            journal={IEEE Journal of Biomedical and Health Informatics},
+            year={2022},
+            publisher={IEEE}
+
+            }
+        """)
