@@ -134,22 +134,22 @@ col1, col2 = st.columns(2)
 col1.image("gui/train/test_img.png", use_column_width=True)
 col2.image("gui/train/training_masks/IR_Case_011.png", use_column_width=True)
 
-# img = Image.open(img)
+img = Image.open(img)
 
-# if 'img' not in st.session_state:
-#     st.session_state['img'] = img
+if 'img' not in st.session_state:
+    st.session_state['img'] = img
 
-# width, height   = img.size[:2]
-# im              = np.array(img)
-# container_width = 768
-# scale           = container_width/width
+width, height   = img.size[:2]
+im              = np.array(img)
+container_width = 768
+scale           = container_width/width
 
-# # # print the type of the image
-# # st.markdown(type(img))
-# # st.markdown(type(im))
-# # st.write(im.shape)
+# # print the type of the image
+# st.markdown(type(img))
+# st.markdown(type(im))
+# st.write(im.shape)
 
-# click(container_width,height,scale,radius_width,show_mask,model,im)
+click(container_width,height,scale,radius_width,show_mask,model,im)
 
 # # with col1:
 # draw = ImageDraw.Draw(img)
