@@ -17,7 +17,7 @@ def get_ellipse_coords(point: tuple[int, int]) -> tuple[int, int, int, int]:
     )
 
 img = image_select(label = "Select an image",
-                   images = ["train/training_images/IR_Case_011.png", "train/training_images/IR_Case_017.png", "train/training_images/IR_Case_019.png", "train/training_images/IR_Case_020.png"],
+                   images = ["train\training_images\IR_Case_011.png", "train\training_images\IR_Case_017.png", "train\training_images\IR_Case_019.png", "train\training_images\IR_Case_020.png"],
                    captions = ["IR_Case_011", "IR_Case_017", "IR_Case_019", "IR_Case_020"],
                    key = "img_select")
 
