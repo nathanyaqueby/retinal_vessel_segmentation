@@ -5,6 +5,7 @@ streamlit-drawable-canvas
 opencv-python
 pycocotools
 matplotlib
+distinctipy
 onnxruntime
 onnx
 git+https://github.com/facebookresearch/segment-anything.git
