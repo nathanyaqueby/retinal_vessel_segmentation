@@ -15,7 +15,7 @@ st.set_page_config(layout="wide",
                page_title="Retinal Image Segmentation - SegRAVIR and Segment Anything Model",
                page_icon="👁️")
 
-st.header("Retinal Image Segmentation")
+st.header("👁️ Retinal Image Segmentation")
 st.write("Click on the image to select the region of interest and label it as 'Vein' or 'Artery'.")
 
 with st.sidebar:
@@ -134,9 +134,8 @@ img = image_select(label = "Select an image",
 if im is not None:
     img = im
 
-st.write(type(img))
-st.write(img.size)
-width, height   = img.size[:2]
+st.write(img.shape)
+width, height   = img.shape[:2]
 im              = np.array(im)
 container_width = 700
 scale           = container_width/width
