@@ -3,6 +3,11 @@ from streamlit_image_select import image_select
 from streamlit_image_coordinates import streamlit_image_coordinates
 from PIL import Image, ImageDraw
 
+st.page_config(layout="wide",
+               initial_sidebar_state="collapsed",
+               page_title="Retinal Image Segmentation - SegRAVIR and Segment Anything Model",
+               page_icon="👁️")
+
 st.header("Retinal Image Segmentation")
 st.write("Click on the image to select the region of interest and label it as 'Vein' or 'Artery'.")
 
@@ -47,23 +52,3 @@ with col1:
 
 with col2:
     st.image(img)
-
-# Define the path to your images directory
-image_dir = 'train/training_images'
-
-# List your image files
-image_files = [
-    'IR_Case_011.png',
-    'IR_Case_017.png',
-    'IR_Case_019.png',
-    'IR_Case_020.png'
-]
-
-# Display images using Streamlit
-for image_file in image_files:
-    image_path = f"{image_dir}/{image_file}"
-    try:
-        image = Image.open(image_path)
-        st.image(image, caption=image_file)
-    except FileNotFoundError:
-        st.error(f"Image file not found: {image_path}")
