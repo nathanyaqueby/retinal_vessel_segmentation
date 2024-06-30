@@ -134,6 +134,8 @@ img = image_select(label = "Select an image",
 if im is not None:
     img = im
 
+st.write(type(img))
+st.write(img.size)
 width, height   = img.size[:2]
 im              = np.array(im)
 container_width = 700
