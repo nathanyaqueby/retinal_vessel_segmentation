@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import random
 import torch
+import cv2
 from streamlit_image_select import image_select
 from streamlit_image_coordinates import streamlit_image_coordinates
 from streamlit_drawable_canvas import st_canvas
@@ -134,7 +135,9 @@ col1, col2 = st.columns(2)
 col1.image("gui/train/test_img.png", use_column_width=True)
 col2.image("gui/train/training_masks/IR_Case_011.png", use_column_width=True)
 
-img = Image.open(img)
+img = cv2.imread(img)
+
+img= cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 if 'img' not in st.session_state:
     st.session_state['img'] = img

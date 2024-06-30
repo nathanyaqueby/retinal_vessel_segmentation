@@ -22,4 +22,4 @@ st.write("""
          Accurate segmentation of retinal vessels is crucial for diagnosing and monitoring various ophthalmic and systemic diseases. This report explores the application of human-in-the-loop segmentation techniques on the RAVIR dataset using SegRAVIR and the Segment Anything Model (SAM) developed by Meta AI. By incorporating human interactions where users can annotate arteries and veins through a Streamlit-based user interface, this study aims to enhance segmentation accuracy and reliability. Comparative analysis between the user-enhanced SAM and the original SegRAVIR model demonstrates the potential benefits of integrating human feedback into automated segmentation pipelines.
          """)
 
-st.image("gui/pipeline.png", caption="Human-in-the-loop segmentation pipeline", use_column_width=True)
+st.image("gui/pipeline.png", caption="Human-in-the-loop segmentation pipeline", use_column_width=True)                               

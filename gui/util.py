@@ -79,7 +79,7 @@ def model_predict_click(im,input_points,input_labels,model):
     input_labels = np.array(input_labels)
     input_points = np.array(input_points)
     masks, scores, logits = predictor.predict(
-        point_coords=input_points,
+        point_coords=input_points,      
         point_labels=input_labels,
         multimask_output=False,
     )
