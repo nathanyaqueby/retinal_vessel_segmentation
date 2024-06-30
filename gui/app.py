@@ -134,8 +134,13 @@ img = image_select(label = "Select an image",
 img = Image.open(img)
 width, height   = img.size[:2]
 im              = np.array(img)
-container_width = 700
+container_width = 768
 scale           = container_width/width
+
+# print the type of the image
+print(type(img))
+print(type(im))
+print(im.shape)
 
 click(container_width,height,scale,radius_width,show_mask,model,im)
 
