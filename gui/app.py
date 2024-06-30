@@ -24,7 +24,7 @@ img = image_select(label = "Select an image",
 col1, col2 = st.columns(2)
 
 with col1:
-    draw = ImageDraw.Draw(img)
+    draw = ImageDraw.Draw(Image.open(img))
 
     # Draw an ellipse at each coordinate in points
     for point in st.session_state["points"]:
@@ -45,3 +45,22 @@ with col1:
 with col2:
     st.image(img)
 
+# Define the path to your images directory
+image_dir = 'train/training_images'
+
+# List your image files
+image_files = [
+    'IR_Case_011.png',
+    'IR_Case_017.png',
+    'IR_Case_019.png',
+    'IR_Case_020.png'
+]
+
+# Display images using Streamlit
+for image_file in image_files:
+    image_path = f"{image_dir}/{image_file}"
+    try:
+        image = Image.open(image_path)
+        st.image(image, caption=image_file)
+    except FileNotFoundError:
+        st.error(f"Image file not found: {image_path}")
