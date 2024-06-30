@@ -41,9 +41,10 @@ def get_ellipse_coords(point: tuple[int, int]) -> tuple[int, int, int, int]:
 def click(container_width,height,scale,radius_width,show_mask,model,im):
     for each in ['color_change_point_box','input_masks_color_box']:
         if each in st.session_state:st.session_state.pop(each)
+
     canvas_result = st_canvas(
             fill_color="rgba(255, 255, 0, 0.8)",
-            background_image = st.session_state['img'],
+            background_image = Image.open(st.session_state['img_select']),
             drawing_mode='point',
             width = container_width,
             height = height * scale,
