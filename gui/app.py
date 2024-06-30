@@ -134,7 +134,7 @@ img = image_select(label = "Select an image",
 if im is not None:
     img = im
 
-st.write(img.shape)
+img = Image.open(img)
 width, height   = img.shape[:2]
 im              = np.array(im)
 container_width = 700
@@ -143,7 +143,7 @@ scale           = container_width/width
 click(container_width,height,scale,radius_width,show_mask,model,im)
 
 # with col1:
-draw = ImageDraw.Draw(Image.open(img))
+draw = ImageDraw.Draw(img)
 
 # Draw an ellipse at each coordinate in points
 for point in st.session_state["points"]:
