@@ -6,6 +6,9 @@ from PIL import Image, ImageDraw
 st.header("Retinal Image Segmentation")
 st.write("Click on the image to select the region of interest and label it as 'Vein' or 'Artery'.")
 
+if "points" not in st.session_state:
+    st.session_state["points"] = []
+
 def get_ellipse_coords(point: tuple[int, int]) -> tuple[int, int, int, int]:
     center = point
     radius = 10
