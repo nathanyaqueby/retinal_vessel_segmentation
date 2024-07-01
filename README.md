@@ -73,6 +73,8 @@ This project explores the application of human-in-the-loop segmentation techniqu
 
 Annotated masks from the human-in-the-loop process can be used to retrain the segmentation model. These masks should be aggregated and integrated into the training dataset to improve the model's performance.
 
+![SamAutomaticMaskGenerator](https://github.com/nathanyaqueby/retinal_vessel_segmentation/assets/73829218/5ee3d6a2-f6fd-4e01-a19a-88ec2733a217)
+
 ## Workflow Diagram
 
 ![Workflow Diagram](gui/pipeline.png)
@@ -82,6 +84,8 @@ Annotated masks from the human-in-the-loop process can be used to retrain the se
 ## Data Augmentation
 
 Data augmentation techniques applied to retinal images and their corresponding segmentation masks help improve model robustness by introducing variability in the training data.
+
+![output](https://github.com/nathanyaqueby/retinal_vessel_segmentation/assets/73829218/c2671dc9-f8df-4d33-bf64-d0563c442601)
 
 *Figure: Illustration of data augmentation techniques applied to retinal images and their corresponding segmentation masks. The top row displays the original image and augmented versions created using Vertical Flip, Horizontal Flip, Perspective, Affine, and Piecewise Affine transformations. The bottom row shows the respective segmentation masks for each augmented image, highlighting the structural changes induced by the augmentations.*
 
